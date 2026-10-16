@@ -1,0 +1,50 @@
+*.pyc
+__pycache__/
+/node_modules
+/uma_runtime
+/secrets/
+/tools
+/scraped game logs
+career_bot/.timing_dna
+# docs/ is ignored by default with an explicit whitelist -- only the files named
+# below are tracked; everything else under docs/ stays local scratch. Git never
+# descends into an ignored DIRECTORY, so re-including a file in a subdirectory
+# requires un-ignoring each parent directory first (that is what the alternating
+# `!/docs/<dir>/` + `/docs/<dir>/*` pairs are doing).
+/docs/*
+!/docs/architecture.md
+!/docs/headless-updates.md
+!/docs/linux.md
+!/docs/linux-support-plan.md
+!/docs/master-headless-re.md
+!/docs/unity_cup.md
+!/docs/scenarios/
+/docs/scenarios/*
+!/docs/scenarios/grand-live-endpoints.md
+!/docs/superpowers/
+/docs/superpowers/*
+!/docs/superpowers/plans/
+/docs/superpowers/plans/*
+!/docs/superpowers/plans/2026-06-13-multi-account-frontend.md
+!/docs/superpowers/specs/
+/docs/superpowers/specs/*
+!/docs/superpowers/specs/2026-06-13-multi-account-frontend-design.md
+/.agents
+/.claude
+skills-lock.json
+/data/skills
+.superpowers/
+frontend/dist
+frontend/node_modules
+.venv
+.vscode
+/data/presets
+/data/race_presets
+/data/bot_config/active.json
+# Azure Storage emulator (Azurite) local artifacts
+AzuriteConfig
+__azurite_db_table__.json
+# tool caches
+.mypy_cache/
+.pytest_cache/
+.codegraph/

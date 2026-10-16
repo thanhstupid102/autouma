@@ -1,0 +1,61 @@
+# Central Python tooling config (§12.6). flake8 stays in .flake8 — it has no
+# native pyproject support and adding a plugin dependency for a config move is
+# not worth it.
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+markers = [
+    "no_default_secret_store_backend: test manages the secret-store environment itself",
+]
+
+[tool.mypy]
+python_version = "3.11"
+# Analyse as Windows on EVERY host, so mypy's result does not depend on who ran
+# it. Without this, a Linux run reports 25 "Module has no attribute" errors for
+# winreg / ctypes.windll / ctypes.FormatError, which typeshed marks Windows-only,
+# while the same code is clean on Windows -- and CI would be permanently red.
+#
+# This does not cost POSIX coverage. The codebase gates platform behaviour on
+# os.name, which mypy does not narrow (it only narrows sys.platform), so no
+# branch is pruned and both sides of every guard stay checked. The one
+# POSIX-only API in use is already reached defensively as
+# getattr(signal, "SIGKILL", 9), so it needs no platform-specific typing.
+platform = "win32"
+mypy_path = "."
+explicit_package_bases = true
+namespace_packages = true
+ignore_missing_imports = true
+# non-strict: untyped function bodies are not checked; we only want real type errors
+check_untyped_defs = false
+# Suppress the matching informational notes emitted for annotations in untyped bodies.
+disable_error_code = ["annotation-unchecked"]
+warn_unused_ignores = true
+
+[[tool.mypy.overrides]]
+module = "scripts.*"
+# Runtime imports may reach scraper modules, but scripts/ is outside this baseline.
+ignore_errors = true
+
+# Typing floor (§12.6): packages whose untyped function BODIES are type-checked.
+# The global default above leaves untyped bodies unchecked; these modules have
+# been cleaned up so the stricter check passes and stays passing.
+[[tool.mypy.overrides]]
+module = [
+    # career_bot.* subsumes the six sub-package globs this floor started with
+    # (scenarios/skills/events/planning/bot_config/engine) plus the flat modules
+    # delay / game_calendar / state_merge -- the whole package is on the floor now.
+    "career_bot.*",
+    # backend.* subsumes the backend.app.domain.rank_point.* glob this floor
+    # started with (rank_point moved to backend/app/domain/ in §11 Phase 6) --
+    # app/cli/context/deps/runner_state plus domain, services, schemas and all
+    # 17 router domains are on the floor now, so the whole repo is covered.
+    "backend.*",
+    "uma_api.*",
+    "uma_data.*",
+    "integrations.*",
+    "core.*",
+    # Top-level module: no package glob matches it, so it needs naming
+    # explicitly or its untyped body stays unchecked (probe-verified).
+    "main",
+]
+check_untyped_defs = true

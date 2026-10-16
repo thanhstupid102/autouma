@@ -1,0 +1,117 @@
+{
+  "response_code": 1,
+  "data_headers": {
+    "result_code": 1
+  },
+  "data": {
+    "chara_info": {
+      "card_id": 105101,
+      "turn": 24,
+      "proper_distance_short": 7,
+      "proper_distance_mile": 7,
+      "proper_distance_middle": 6,
+      "proper_distance_long": 1,
+      "proper_running_style_nige": 2,
+      "proper_running_style_senko": 7,
+      "proper_running_style_sashi": 7,
+      "proper_running_style_oikomi": 1,
+      "proper_ground_turf": 7,
+      "proper_ground_dirt": 2
+    },
+    "team_data_set": {
+      "evaluation_info_array": [
+        {
+          "target_id": 1,
+          "chara_id": 1057,
+          "member_state": 1,
+          "soul_threshold_id": 2,
+          "soul_event_state": 0
+        },
+        {
+          "target_id": 2,
+          "chara_id": 1068,
+          "member_state": 1,
+          "soul_threshold_id": 5,
+          "soul_event_state": 1
+        },
+        {
+          "target_id": 3,
+          "chara_id": 1022,
+          "member_state": 1,
+          "soul_threshold_id": 5,
+          "soul_event_state": 0
+        },
+        {
+          "target_id": 4,
+          "chara_id": 1056,
+          "member_state": 1,
+          "soul_threshold_id": 5,
+          "soul_event_state": 0
+        },
+        {
+          "target_id": 5,
+          "chara_id": 1060,
+          "member_state": 1,
+          "soul_threshold_id": 5,
+          "soul_event_state": 2
+        },
+        {
+          "target_id": 6,
+          "chara_id": 1009,
+          "member_state": 1,
+          "soul_threshold_id": 5,
+          "soul_event_state": 2
+        },
+        {
+          "target_id": 101,
+          "chara_id": 9001,
+          "member_state": 0,
+          "soul_threshold_id": 1,
+          "soul_event_state": 0
+        },
+        {
+          "target_id": 103,
+          "chara_id": 9003,
+          "member_state": 0,
+          "soul_threshold_id": 1,
+          "soul_event_state": 0
+        },
+        {
+          "target_id": 104,
+          "chara_id": 9004,
+          "member_state": 0,
+          "soul_threshold_id": 1,
+          "soul_event_state": 0
+        },
+        {
+          "target_id": 106,
+          "chara_id": 9006,
+          "member_state": 0,
+          "soul_threshold_id": 1,
+          "soul_event_state": 0
+        },
+        {
+          "target_id": 1010,
+          "chara_id": 1010,
+          "member_state": 1,
+          "soul_threshold_id": 5,
+          "soul_event_state": 0
+        },
+        {
+          "target_id": 1030,
+          "chara_id": 1030,
+          "member_state": 1,
+          "soul_threshold_id": 3,
+          "soul_event_state": 0
+        },
+        {
+          "target_id": 1052,
+          "chara_id": 1052,
+          "member_state": 1,
+          "soul_threshold_id": 2,
+          "soul_event_state": 0
+        }
+      ]
+    }
+  }
+}

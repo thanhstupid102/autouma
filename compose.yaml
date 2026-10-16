@@ -1,0 +1,38 @@
+services:
+  manhattancafe:
+    image: manhattancafe-uma-auto
+    build:
+      context: .
+    read_only: true
+    init: true
+    restart: unless-stopped
+    environment:
+      UMA_RUNTIME_DIR: /state
+      UMA_API_TOKEN_FILE: /run/secrets/uma_api_token
+      UMA_SECRET_PASSPHRASE_FILE: /run/secrets/uma_secret_passphrase
+      SWEEPY_HOST: 0.0.0.0
+      SWEEPY_PORT: "1616"
+    ports:
+      - "1616:1616"
+    volumes:
+      - uma-state:/state
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,nodev,size=64m,mode=1777
+    secrets:
+      - uma_api_token
+      - uma_secret_passphrase
+    mem_limit: 256m
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+
+volumes:
+  uma-state:
+    name: manhattancafe-uma-state
+
+secrets:
+  uma_api_token:
+    file: ./secrets/uma_api_token
+  uma_secret_passphrase:
+    file: ./secrets/uma_secret_passphrase

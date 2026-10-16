@@ -1,0 +1,12 @@
+# Development-only dependencies (NOT needed to run the bot). Install into the venv:
+#   python -m venv .venv --system-site-packages
+#   .venv\Scripts\python.exe -m pip install -r requirements-dev.txt
+#
+# The runtime deps in requirements.txt are assumed already present in the SYSTEM
+# Python the venv is created from; the venv inherits them via
+# --system-site-packages. See DEPENDENCIES.md for the interpreter version the
+# branch is currently developed and tested on.
+pytest==9.1.0
+httpx==0.28.1
+flake8==7.3.0
+mypy==2.3.0

@@ -1,0 +1,22 @@
+{
+  "name": "umamusume-sweepy",
+  "version": "1.0.0",
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
+  "scripts": {
+    "start": "python main.py",
+    "build:ui": "npm --prefix frontend install && npm --prefix frontend run build",
+    "postinstall": "npm --prefix frontend install && npm --prefix frontend run build"
+  },
+  "dependencies": {
+    "steam-user": "^5.0.0",
+    "steam-session": "^1.7.2"
+  },
+  "overrides": {
+    "protobufjs": "^7.5.8"
+  },
+  "allowScripts": {
+    "protobufjs@7.6.4": true
+  }
+}

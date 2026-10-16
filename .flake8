@@ -1,0 +1,21 @@
+[flake8]
+# Focused bug/correctness gate (pyflakes F-codes + syntax E9 + complexity C90).
+# Cosmetic pycodestyle style (E1/E2/E3/E5/E7, W2/W3/W5) is intentionally NOT
+# enforced: it was never enforced here and mass-reformatting 7k LOC is churn with
+# no functional value. F403/F405 (star imports) are intentional in the dedicated
+# constants-module facades (mant_item_data / skills_data) imported via `import *`.
+select = F, E9, C90
+extend-ignore = F403, F405
+# Ratchet: 90 -> 60 (§12.6) -> 55, kept just above the current worst function
+# (`RunnerRaceMixin._race` in career_bot/engine/racing.py = 53; the old anchor
+# `CareerRunner._run` is down to 1 after the §12.3/§12.4 splits). 53 is the hard
+# floor today -- 52 fails. Blocks NEW god-functions while grandfathering the 25
+# known offenders (>15); ratchet further as the engine splits continue. Full
+# list: flake8 --select=C90 --max-complexity=15.
+max-complexity = 55
+# uma_runtime/ holds vendored RE tooling (Il2CppDumper, pydeps) that is not our
+# source and includes Python-2 files; without it here a bare `flake8` at the repo
+# root reports 230 findings, none of them in tracked source. tools/, .agents/,
+# .claude/ and data/skills are likewise not project source.
+exclude = .venv, node_modules, frontend, .codegraph, build, dist, __pycache__,
+          uma_runtime, tools, .agents, .claude, data/skills
